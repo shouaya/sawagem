@@ -1,3 +1,3 @@
-module Sawa
-  VERSION = "0.0.1"
+class Sawa
+  VERSION = "0.0.2"
 end

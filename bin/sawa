@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require 'sawa'
+require 'sawa/version'
+require 'optparse'
+
+class Sawa
+  class CLI
+    # Return a structure describing the options.
+    def self.parse_options(args)
+      opts = OptionParser.new do |opts|
+        opts.banner = "Usage: sawa [-c] [-t] [-e] [-r library] FILE ..."
+
+	opts.separator " "
+
+        opts.separator "Examples:"
+        opts.separator "  $ mustache data.yml template.mustache"
+        opts.separator "  $ cat data.yml | mustache - template.mustache"
+        opts.separator "  $ mustache -c template.mustache"
+
+        opts.separator " "
+
+        opts.separator "See https://github.com/shouaya/sawagem"
+        opts.separator "  for more details."
+
+        opts.separator " "
+        opts.separator "Options:"
+
+
+        opts.on("-v", "--version", "Print the version") do |v|
+          puts "Sawa v#{Sawa::VERSION}"
+          exit
+        end
+
+        opts.on_tail("-h", "--help", "Show this message") do
+          puts opts
+          exit
+        end
+      end
+
+      opts.separator ""
+
+      opts.parse!(args)
+    end
+  end
+end
+
+# Help is the default.
+ARGV << '-h' if ARGV.empty? && $stdin.tty?
+
+# Process options
+Sawa::CLI.parse_options(ARGV) if $stdin.tty?
