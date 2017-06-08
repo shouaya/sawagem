@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "sawa"
   spec.version       = Sawa::VERSION
   spec.authors       = ["shouaya"]
-  spec.email         = ["favaserver@163.com"]
+  spec.email         = ["favaserver@gmail.com"]
 
   spec.summary       = %q{"rest system build with sawa"}
   spec.description   = %q{"https://github.com/shouaya/moa/blob/master/README.md"}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/shouaya/sawagem"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
