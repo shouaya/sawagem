@@ -1,0 +1,11 @@
+#{resource}.{name}={type},{nullable},{title}
+{{# sheet_arr}}
+{{table_name}}.id=java.lang.Integer,0,id
+{{table_name}}.cuser=java.lang.Integer,0,cuser
+{{table_name}}.uuser=java.lang.Integer,0,uuser
+{{# rows_model}}
+{{# is_column}}
+{{table_name}}.{{name}}={{type}},{{nullable}},{{title}}
+{{/is_column}}
+{{/ rows_model}}
+{{/ sheet_arr}}

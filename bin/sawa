@@ -3,6 +3,7 @@
 require 'sawa'
 require 'sawa/version'
 require 'optparse'
+require 'fileutils'
 
 class Sawa
   class CLI
@@ -26,6 +27,36 @@ class Sawa
         opts.separator " "
         opts.separator "Options:"
 
+	opts.on("-n", "--new FILE", "create sawa project") do |file|
+          puts exec('git clone https://github.com/shouaya/sawaapp.git ' + file)
+          exit
+        end
+
+	opts.on("-g", "--generate FILE", "generate source from file") do |file|
+          puts Sawa.new(file).generate_code
+          exit
+        end
+
+	opts.on("-s", "--server", "run rest api server") do
+	  puts "start rest api server"
+	  system('start java -cp bin;lib\sawa.jar;. com.jialu.sawa.MiniApp server mini.yml')
+          exit
+        end
+
+	opts.on("-d", "--dropdb", "drop db") do
+	  puts "drop db"
+	  system('start java -cp bin;lib\sawa.jar;. com.jialu.sawa.MiniApp db drop-all --confirm-delete-everything mini.yml')
+          exit
+        end
+
+#TODO 
+#	opts.on("-ac", "--antcompile", "ant compile java file to class") do
+#          exit
+#       end
+#	opts.on("-r", "--replace", "replace domian in build js") do
+#          exit
+#       end
+#	npm start / npm run /npm build
 
         opts.on("-v", "--version", "Print the version") do |v|
           puts "Sawa v#{Sawa::VERSION}"

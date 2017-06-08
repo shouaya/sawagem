@@ -1,13 +1,9 @@
 # coding: UTF-8
 require 'spreadsheet'
 require 'mustache'
-require './lib/MiniSheet.rb'
+require 'sawa/MiniSheet.rb'
 
 class MiniWork < Mustache
-
-  @book
-
-  @sheets
 
   def initialize(file, config)
     @book = Spreadsheet.open(file, 'r')

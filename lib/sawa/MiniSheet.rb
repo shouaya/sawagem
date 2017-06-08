@@ -1,26 +1,9 @@
 require 'mustache'
 require 'spreadsheet'
-require './lib/MiniProperty.rb'
-require './lib/MiniResource.rb'
+require 'sawa/MiniProperty.rb'
+require 'sawa/MiniResource.rb'
 
 class MiniSheet < Mustache
-  @sheet
-  @config
-  @idx_path
-  @idx_title
-  @idx_method
-  @idx_process
-  @idx_role
-  @idx_type
-  @idx_name
-  @idx_unique
-  @idx_nullable
-  @idx_jsonignore
-  @idx_title
-  @idx_mappedBy
-  @idx_refColumn
-  @idx_isList
-  @idx_param
 
   def initialize(sheet, config)
     @sheet = sheet

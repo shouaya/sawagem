@@ -1,0 +1,40 @@
+package {{package_api}};
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+import javax.annotation.security.RolesAllowed;
+import {{package_model}}.{{model_name}};
+import com.jialu.sawa.vo.*;
+
+{{# api_imports}}
+{{.}}
+{{/ api_imports}}
+
+import io.dropwizard.hibernate.UnitOfWork;
+
+@Path("{{resource_path}}")
+public interface {{api_name}} {
+
+	{{# rows_path}}
+	/**
+	 * {{resource_desc}}
+	 */
+	@{{resource_httpM}}
+	@UnitOfWork
+	@Path("{{{resource_path}}}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	{{# resource_role}}
+	@RolesAllowed({ {{{.}}} })
+	{{/ resource_role}}
+	{{# resource_islist}}
+	public abstract OperatorResult<List<{{model_name}}>> {{resource_method}}({{{resource_param_full}}});
+	{{/ resource_islist}}
+	{{^ resource_islist}}
+	public abstract OperatorResult<{{model_name}}> {{resource_method}}({{{resource_param_full}}});
+	{{/ resource_islist}}
+	{{/ rows_path}}
+	
+}
+

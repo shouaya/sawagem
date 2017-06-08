@@ -1,0 +1,56 @@
+package {{package_model}};
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+import com.jialu.sawa.utility.MiniModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+{{# model_imports}}
+{{.}}
+{{/ model_imports}}
+
+/**
+ * @author tools
+ * {{model_title}}
+ */
+@Entity
+@Table(name = "{{table_name}}")
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class {{model_name}} extends MiniModel{
+
+	private static final long serialVersionUID = 1L;
+	
+    {{# rows_model}}
+    /**
+	 * {{title}}
+	 */
+    {{# jsonignore}}
+	@JsonIgnore
+	{{/jsonignore}}
+    {{# has_mapped}}
+	    {{# is_onetomany}}
+	@OneToMany(mappedBy = "{{resource_name}}")
+	@JsonManagedReference("{{resource_name}}")
+	@Where(clause = "id < 0")
+		{{/is_onetomany}}
+		{{# is_manytoone}}
+	@ManyToOne
+	@JsonBackReference("{{name}}")
+	@JoinColumn(name="{{join_column}}", nullable=false, insertable = false, updatable = false)
+		{{/is_manytoone}}
+		{{# is_onetoone}}
+	@OneToOne
+	@JoinColumn(name="{{join_column}}", nullable=false, insertable = false, updatable = false)
+		{{/is_onetoone}}
+	{{/has_mapped}}
+	{{# is_column}}
+	@Column(unique = {{unique}}, nullable = {{nullable}})
+	{{/is_column}}
+	private {{{type}}} {{name}};
+		
+	{{/ rows_model}}
+}

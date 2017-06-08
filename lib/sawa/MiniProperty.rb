@@ -1,15 +1,4 @@
 class MiniProperty
-  @row
-  @sheet
-  @idx_type
-  @idx_name
-  @idx_unique
-  @idx_nullable
-  @idx_jsonignore
-  @idx_title
-  @idx_mappedBy
-  @idx_refColumn
-
   def initialize(row, sheet)
     @row = row
 	@sheet = sheet

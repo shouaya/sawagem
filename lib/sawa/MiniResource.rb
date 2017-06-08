@@ -1,14 +1,4 @@
 class MiniResource
-  @row
-  @sheet
-  @idx_method
-  @idx_process
-  @idx_role
-  @idx_desc
-  @idx_islist
-  @idx_param
-  @idx_path
-  @idx_httpM
 
   def initialize(row, sheet)
     @row = row

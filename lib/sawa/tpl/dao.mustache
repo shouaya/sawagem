@@ -1,0 +1,13 @@
+package {{package_dao}};
+
+import org.hibernate.SessionFactory;
+
+import {{package_model}}.{{model_name}};
+import com.jialu.sawa.utility.MiniDao;
+
+public class {{dao_name}} extends MiniDao<{{model_name}}> {
+
+	public {{dao_name}}(SessionFactory factory) {
+		super(factory);
+	}
+}

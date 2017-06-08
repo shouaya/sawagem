@@ -1,0 +1,47 @@
+package {{package_resource}};
+
+import {{package_api}}.{{api_name}};
+import {{package_dao}}.{{dao_name}};
+import {{package_model}}.{{model_name}};
+import com.jialu.sawa.utility.MiniBean;
+import com.jialu.sawa.utility.MiniCrudResource;
+import com.jialu.sawa.vo.*;
+
+{{# resource_imports}}
+{{.}}
+{{/ resource_imports}}
+
+public class {{resource_name}} extends MiniCrudResource<{{model_name}}, {{dao_name}}> implements {{api_name}}{
+
+	public {{resource_name}}(MiniBean config) {
+		super(config);
+	}
+
+	@Override
+	public {{dao_name}} getDao() {
+		return config.getDao({{dao_name}}.class);
+	}
+	
+	@Override
+	public Class<{{model_name}}> getModelT() {
+		return {{model_name}}.class;
+	}
+	
+	{{# rows_path}}
+	/**
+	 * {{resource_desc}}
+	 */
+	@Override
+	{{# resource_islist}}
+	public OperatorResult<List<{{model_name}}>> {{resource_method}}({{{resource_param_type}}}) {
+		return {{resource_process}}({{{resource_param_value}}});
+	}
+	{{/ resource_islist}}
+	{{^ resource_islist}}
+	public OperatorResult<{{model_name}}> {{resource_method}}({{{resource_param_type}}}) {
+		return {{resource_process}}({{{resource_param_value}}});
+	}
+	{{/ resource_islist}}
+	{{/ rows_path}}
+	
+}

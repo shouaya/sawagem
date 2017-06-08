@@ -1,0 +1,26 @@
+import React, { Component } from 'react';
+import MiniPage from '../Page';
+class {{page_name}} extends Component {
+  
+  render() {
+    const column = [
+      {{# rows_model}}
+        {{^jsonignore}}
+          {"title":"{{title}}", "name":"{{name}}", "type":"{{type_js}}", "ref":"{{join_column}}"}, 
+        {{/jsonignore}}
+      {{/ rows_model}}
+    ]
+    
+    return (
+      <MiniPage
+        title="{{model_title}}"
+        name="{{resource_path}}" 
+        table_name="{{table_name}}" 
+        search={this.props.location.search}
+        column={column}
+      />
+    );
+  }
+}
+
+export default {{page_name}};

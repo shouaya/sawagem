@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>	
+{{# sheet_arr}}
+
+	<query name="{{table_name}}">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 ORDER BY e.utime DESC]]>
+	</query>
+	<query name="{{table_name}}-id">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.id = :id ORDER BY e.utime DESC]]>
+	</query>
+	<query name="{{table_name}}-cuser">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.cuser = :cuser ORDER BY e.utime DESC]]>
+	</query>
+	<query name="{{table_name}}-uuser">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.uuser = :uuser ORDER BY e.utime DESC]]>
+	</query>
+	<query name="{{table_name}}-deleted">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = :deleted ORDER BY e.utime DESC]]>
+	</query>
+    {{# rows_model}}
+    	{{# is_column}}
+    <query name="{{table_name}}-{{name}}">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.{{name}} = :{{name}} ORDER BY e.utime DESC]]>
+	</query>
+		{{/is_column}}
+    {{/ rows_model}}
+{{/ sheet_arr}}
+</hibernate-mapping>
