@@ -18,7 +18,7 @@ class MiniSheet < Mustache
     @idx_unique = 3
     @idx_nullable = 4
     @idx_jsonignore = 5
-    @idx_title = 6
+    @idx_mtitle = 6
     @idx_mappedBy = 7
     @idx_refColumn = 8
 	@idx_isList = 5
@@ -87,7 +87,7 @@ class MiniSheet < Mustache
 	arr = []
 	@sheet.each do |row|
 	  if row[0] == "m" and row[@idx_jsonignore] == "1"
-	    arr.push "#{@sheet.row(0)[@idx_path]}.#{row[@idx_name]}=#{row[@idx_type]},#{row[@idx_nullable]},#{row[@idx_title]}"
+	    arr.push "#{@sheet.row(0)[@idx_path]}.#{row[@idx_name]}=#{row[@idx_type]},#{row[@idx_nullable]},#{row[@idx_mtitle]}"
 	  end
 	end
 	arr

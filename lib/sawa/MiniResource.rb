@@ -25,7 +25,7 @@ class MiniResource
     if @row[@idx_role] == nil or  @row[@idx_role] == ""
 		nil
 	else
-		"\"" +  @row[@idx_role].split(",").join("\",\"") + "\""
+		"\"" +  @row[@idx_role].split(",").join(",") + "\""
     end
   end
 
