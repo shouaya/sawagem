@@ -13,6 +13,11 @@ create new crud project:
 create new crud project:
 
     $ cd demo
+    
+fill model.xls and it will create tables、resources、models、pages
+
+![](https://api.9jialu.com/app/guide/sawa/step1.JPG)
+
     $ sawa -g model.xls
     $ ant compile
 
