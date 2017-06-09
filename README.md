@@ -1,5 +1,5 @@
 
-![](http://www.9jialu.com/image/Original_without_effects_204x75.png)
+![](https://s3-ap-northeast-1.amazonaws.com/ms17222/step/Original_without_effects_204x75.png)
 
 # SawaGem : auto generate code tools for sawa rest api
 
@@ -19,7 +19,7 @@ create new crud project:
     
 fill model.xls and it will create tables、resources、models、pages
 
-![](https://api.9jialu.com/app/guide/sawa/step1.JPG)
+![](https://s3-ap-northeast-1.amazonaws.com/ms17222/step/step1.JPG)
 
     $ sawa -g model.xls
     $ ant compile
@@ -40,11 +40,11 @@ run client
 
 login(*before login must be regist, debug model password is 0000)
 
-![](https://api.9jialu.com/app/guide/sawa/step5.JPG)
+![](https://s3-ap-northeast-1.amazonaws.com/ms17222/step/step5.JPG)
 
 after login
 
-![](https://api.9jialu.com/app/guide/sawa/step6.JPG)
+![](https://s3-ap-northeast-1.amazonaws.com/ms17222/step/step6.JPG)
 
 ## dependencies
 
