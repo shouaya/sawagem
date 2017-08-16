@@ -35,16 +35,15 @@ public class {{model_name}} extends MiniModel{
 	    {{# is_onetomany}}
 	@OneToMany(mappedBy = "{{resource_name}}")
 	@JsonManagedReference("{{resource_name}}")
-	@Where(clause = "id < 0")
 		{{/is_onetomany}}
 		{{# is_manytoone}}
 	@ManyToOne
 	@JsonBackReference("{{name}}")
-	@JoinColumn(name="{{join_column}}", nullable=false, insertable = false, updatable = false)
+	@JoinColumn(name="{{join_column}}", nullable=true, insertable = false, updatable = false)
 		{{/is_manytoone}}
 		{{# is_onetoone}}
 	@OneToOne
-	@JoinColumn(name="{{join_column}}", nullable=false, insertable = false, updatable = false)
+	@JoinColumn(name="{{join_column}}", nullable=true, insertable = false, updatable = false)
 		{{/is_onetoone}}
 	{{/has_mapped}}
 	{{# is_column}}
