@@ -35,6 +35,7 @@ public class {{model_name}} extends MiniModel{
 	    {{# is_onetomany}}
 	@OneToMany(mappedBy = "{{resource_name}}")
 	@JsonManagedReference("{{resource_name}}")
+	@Where(clause = "deleted = 0")
 		{{/is_onetomany}}
 		{{# is_manytoone}}
 	@ManyToOne

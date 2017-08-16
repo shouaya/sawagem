@@ -110,6 +110,9 @@ class MiniSheet < Mustache
       if row[@idx_mappedBy] == "1:n" and !arr.include?("import com.fasterxml.jackson.annotation.JsonManagedReference;")
         arr.push "import com.fasterxml.jackson.annotation.JsonManagedReference;"
       end
+      if row[@idx_mappedBy] == "1:n" and !arr.include?("import org.hibernate.annotations.Where;")
+        arr.push "import org.hibernate.annotations.Where;"
+      end
 
       if row[@idx_mappedBy] == "n:1" and !arr.include?("import javax.persistence.ManyToOne;")
         arr.push "import javax.persistence.ManyToOne;"
