@@ -10,6 +10,7 @@ class MiniProperty
     @idx_title = 6
     @idx_mappedBy = 7
     @idx_refColumn = 8
+    @idx_searchKey = 9
   end
 
   def resource_name
@@ -75,5 +76,9 @@ class MiniProperty
 
   def is_onetoone
     @row[@idx_mappedBy] == "1:1"
+  end
+  
+  def is_searchkey
+    @row[@idx_searchKey] == "1"
   end
 end
