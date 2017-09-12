@@ -16,16 +16,29 @@ class App extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
-  onOpen(event) {
-	this.setState({ login:true })
+  getCookie(name) {
+	  var value = "; " + document.cookie;
+	  var parts = value.split("; " + name + "=");
+	  if (parts.length === 2) return parts.pop().split(";").shift();
   }
   
-  onClose(event) {
-	this.setState({ users:[], login:false })
+  deleteCookie(name) {
+	  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
   
   componentWillMount(){
-
+      let hash = window.location.hash
+      if(hash === "#login" || hash === "#logout"){
+        this.deleteCookie("uid")
+        this.deleteCookie("tooken")
+        this.setState({ login:false })
+        return
+      }
+      let uid = this.getCookie("uid")
+      let token = this.getCookie("tooken")
+      if(uid !== null && token !== null){
+        this.setState({ login:true })
+      }
   }
   
   onlineChange(users){
