@@ -68,18 +68,16 @@ class Sawa
     str_app_js = @work.render
     File.open("#{@JSRC_PATH}/App.js", 'w') { |file| file.write(str_app_js) }
 
+    #source.js
+    @work.template_file = "#{@TPL_PATH}/source.js.mustache"
+    str_source_js = @work.render
+    File.open("#{@JSRC_PATH}/Source.js", 'w') { |file| file.write(str_source_js) }
+
     #page.js
     @work.sheets.each do |name, sheet|
       sheet.template_file = "#{@TPL_PATH}/page.js.mustache"
       str_page_js = sheet.render
       File.open("#{@JSRC_PATH}/pages/#{sheet.page_name}.js", 'w') { |file| file.write(str_page_js) }
-    end
-
-    #source.js
-    @work.sheets.each do |name, sheet|
-      sheet.template_file = "#{@TPL_PATH}/source.js.mustache"
-      str_source_js = sheet.render
-      File.open("#{@JSRC_PATH}/pages/Source.js", 'w') { |file| file.write(str_source_js) }
     end
 
     "code generate finish"

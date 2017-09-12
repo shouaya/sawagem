@@ -3,7 +3,7 @@ const Source = {
   	{{# rows_model}}
     	{{# is_column}}
     		{{# is_searchkey}}
-				{{resource_name}}: {name:'{{resource_name}}', query:{name: '{{table_name}}-{{name}}', limit: 10, offset: 0}, col:'{{name}}'},
+  {{resource_name}}: {name:'{{resource_name}}', query:{name: '{{table_name}}-{{name}}', limit: 10, offset: 0}, col:'{{name}}'},
 			{{/is_searchkey}}
 		{{/is_column}}
     {{/ rows_model}}

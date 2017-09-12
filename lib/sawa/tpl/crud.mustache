@@ -23,14 +23,14 @@
     {{# rows_model}}
     	{{# is_column}}
     		{{# is_searchkey}}
-			    <query name="{{table_name}}-{{name}}">
-				  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.{{name}} LIKE :{{name}} ORDER BY e.id]]>
-				</query>
+	    <query name="{{table_name}}-{{name}}">
+		  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.{{name}} LIKE :{{name}} ORDER BY e.id]]>
+		</query>
 			{{/is_searchkey}}
 			{{^ is_searchkey}}
-		        <query name="{{table_name}}-{{name}}">
-				  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.{{name}} = :{{name}} ORDER BY e.utime DESC]]>
-				</query>
+    <query name="{{table_name}}-{{name}}">
+	  <![CDATA[FROM {{model_name}} e WHERE e.deleted = 0 and e.{{name}} = :{{name}} ORDER BY e.utime DESC]]>
+	</query>
 			{{/is_searchkey}}
 		{{/is_column}}
     {{/ rows_model}}
