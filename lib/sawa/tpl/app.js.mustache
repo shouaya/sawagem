@@ -26,14 +26,15 @@ class App extends Component {
 	  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
   
+  onError(res){
+	  if(res.status === 403 || res.status === 401){
+		  this.deleteCookie("uid")
+	      this.deleteCookie("tooken")
+	      this.setState({ login:false })
+	  }
+  }
+  
   componentWillMount(){
-      let hash = window.location.hash
-      if(hash === "#login" || hash === "#logout"){
-        this.deleteCookie("uid")
-        this.deleteCookie("tooken")
-        this.setState({ login:false })
-        return
-      }
       let uid = this.getCookie("uid")
       let token = this.getCookie("tooken")
       if(uid !== null && token !== null){
@@ -64,9 +65,9 @@ class App extends Component {
 		{{/ sheet_arr}}
         </Menu>
 	    <Divider />
-		<Route exact path="/" render={() => <Guide onLogin={this.onLogin.bind(this)} login={this.state.login}/>} />
+		<Route exact path="/" render={() => <Guide onLogin={this.onLogin.bind(this)} login={this.state.login} onError={this.onError.bind(this)}/>} />
 		{{# sheet_arr}}
-		<Route path='/{{resource_path}}' component={ {{page_name}} }/>
+		<Route path='/{{resource_path}}' render={() => <{{page_name}} onError={this.onError.bind(this)}/>
 		{{/ sheet_arr}}
 	  </div>
 	  </Router>

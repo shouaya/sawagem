@@ -16,8 +16,8 @@ class {{page_name}} extends Component {
         title="{{model_title}}"
         name="{{resource_path}}" 
         table_name="{{table_name}}" 
-        search={this.props.location.search}
         column={column}
+        onError={this.props.onError}
       />
     );
   }
