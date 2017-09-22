@@ -67,7 +67,7 @@ class App extends Component {
 	    <Divider />
 		<Route exact path="/" render={() => <Guide onLogin={this.onLogin.bind(this)} login={this.state.login} onError={this.onError.bind(this)}/>} />
 		{{# sheet_arr}}
-		<Route path='/{{resource_path}}' render={() => <{{page_name}} onError={this.onError.bind(this)}/>
+		<Route path='/{{resource_path}}' render={() => <{{page_name}} onError={this.onError.bind(this)}/>}/>
 		{{/ sheet_arr}}
 	  </div>
 	  </Router>

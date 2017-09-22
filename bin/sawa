@@ -31,8 +31,8 @@ class Sawa
           puts exec('git clone https://github.com/shouaya/sawaapp.git ' + file)
           exit
         end
-
-	opts.on("-g", "--generate FILE", "generate source from file") do |file|
+       
+	opts.on("-g", "--generate file1 file2", Array, "generate source from file") do |file|
           puts Sawa.new(file).generate_code
           exit
         end

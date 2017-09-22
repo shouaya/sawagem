@@ -5,10 +5,10 @@ require 'yaml'
 class Sawa
   ROOT = Dir.pwd
   GEMROOT = File.dirname(File.expand_path(__FILE__))
-  def initialize(options = {})
-    @options = options
-    @config = YAML.load_file("#{ROOT}/mini.yml")
-    @work = MiniWork.new(@options, @config)
+  def initialize(options)
+  	puts options
+    @config = YAML.load_file("#{ROOT}/#{options[1]}")
+    @work = MiniWork.new(options[0], @config)
     @JSRC_PATH = "#{ROOT}/www/src"
     @XML_PATH = "#{ROOT}/resources"
     @MODEL_PATH = "#{ROOT}/src/" + @config['packageModel'].split('.').join("/")
