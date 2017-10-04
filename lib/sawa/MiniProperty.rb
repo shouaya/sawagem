@@ -25,6 +25,10 @@ class MiniProperty
     @row[@idx_type]
   end
 
+  def is_string
+    @row[@idx_type] == "java.lang.String"
+  end
+  
   def type_js
     if @row[@idx_type] == "java.lang.String"
       return "txt"
