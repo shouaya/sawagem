@@ -4,6 +4,8 @@ import Guide from './Guide';
 {{# sheet_arr}}
 import {{page_name}} from './pages/{{page_name}}'
 {{/ sheet_arr}}
+import CustomMenu from './CustomMenu'
+import CustomRoute from './CustomRoute'
 import {
   BrowserRouter as Router,
   Route,
@@ -63,12 +65,14 @@ class App extends Component {
         {{# sheet_arr}}
 			<Menu.Item name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleItemClick} >{{model_title}}</Menu.Item>
 		{{/ sheet_arr}}
+		<CustomMenu activeItem={activeItem} onClick={this.handleItemClick} />
         </Menu>
 	    <Divider />
 		<Route exact path="/" render={() => <Guide onLogin={this.onLogin.bind(this)} login={this.state.login} onError={this.onError.bind(this)}/>} />
 		{{# sheet_arr}}
 		<Route path='/{{resource_path}}' render={() => <{{page_name}} onError={this.onError.bind(this)}/>}/>
 		{{/ sheet_arr}}
+		<CustomRoute onError={this.onError.bind(this)}/>
 	  </div>
 	  </Router>
     );
