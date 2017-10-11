@@ -11,7 +11,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import { Menu, Divider, Header,Image } from 'semantic-ui-react'
+import { Menu, Divider, Header, Segment, Button, Image } from 'semantic-ui-react'
 
 class App extends Component {
   state = {user:null, users: [], login:false}
@@ -40,39 +40,60 @@ class App extends Component {
       let uid = this.getCookie("uid")
       let token = this.getCookie("tooken")
       if(uid !== null && token !== null){
-        this.setState({ login:true })
+    	let str = localStorage.getItem(uid)
+        let user = JSON.parse(str)
+        this.setState({ user: user, login:true })
       }
-  }
-  
-  onlineChange(users){
-	  this.setState({ users: users })
   }
   
   onLogin(user){
 	  this.setState({ user: user, login:true })
+	  localStorage.setItem(user.phone, JSON.stringify(user))
+  }
+  
+  onLogout(user){
+	  this.deleteCookie("uid")
+      this.deleteCookie("tooken")
+	  this.setState({ login:false })
+	  localStorage.clear();
   }
 
   render() {
 	const { activeItem } = this.state
 	if(!this.state.login) return  <Guide onLogin={this.onLogin.bind(this)} login={this.state.login}/>
+	const admin = this.state.user.role === "ADMIN"
     return (
       <Router>
-      <div className="body">
+      <div>
+      <Header className="miniheader">
 		<Link to='/'>
-			<Header><Image src='http://s3.9jialu.com/whale64.png' size='tiny' wrapped verticalAlign='bottom'/></Header>
+		&nbsp;&nbsp;&nbsp;
+			<Image src='http://s3.9jialu.com/whale64.png' size='tiny' wrapped verticalAlign='bottom'/>
+				<span className="minititle">クジラ・データ</span>
 		</Link>
-        <Menu>
+		<Divider />
+		<Segment inverted className="minimenu">
+        <Menu inverted pointing secondary>
         {{# sheet_arr}}
-			<Menu.Item name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleItemClick} >{{model_title}}</Menu.Item>
+			<Menu.Item style={ {display: admin ? 'block' : 'none'} } name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleItemClick} >{{model_title}}</Menu.Item>
 		{{/ sheet_arr}}
 		<CustomMenu activeItem={activeItem} onClick={this.handleItemClick} />
+		<Menu.Menu position='right'>
+          <Menu.Item>
+            <Button primary onClick={this.onLogout.bind(this)}>Sign out</Button>
+          </Menu.Item>
+        </Menu.Menu>
         </Menu>
-	    <Divider />
+        </Segment>
+        </Header>
 		<Route exact path="/" render={() => <Guide onLogin={this.onLogin.bind(this)} login={this.state.login} onError={this.onError.bind(this)}/>} />
 		{{# sheet_arr}}
 		<Route path='/{{resource_path}}' render={() => <{{page_name}} onError={this.onError.bind(this)}/>}/>
 		{{/ sheet_arr}}
 		<CustomRoute onError={this.onError.bind(this)}/>
+		<div className="footer">
+			<p className="footer__text">Copyright © 2007-2017 E-Business Corporation. All Rights Reserved.</p>
+		</div>
 	  </div>
 	  </Router>
     );
