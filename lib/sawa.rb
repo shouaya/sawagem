@@ -63,17 +63,22 @@ class Sawa
     str_property = @work.render
     File.open("#{@XML_PATH}/property.properties", 'w') { |file| file.write(str_property) }
 
-    #app.js
-    @work.template_file = "#{@TPL_PATH}/app.js.mustache"
-    str_app_js = @work.render
-    File.open("#{@JSRC_PATH}/App.js", 'w') { |file| file.write(str_app_js) }
+    #Routes.js
+    @work.template_file = "#{@TPL_PATH}/routes.js.mustache"
+    str_routes_js = @work.render
+    File.open("#{@JSRC_PATH}/Routes.js", 'w') { |file| file.write(str_routes_js) }
+      
+    #Toolbar.js
+    @work.template_file = "#{@TPL_PATH}/toolbar.js.mustache"
+    str_toolbar_js = @work.render
+    File.open("#{@JSRC_PATH}/Toolbar.js", 'w') { |file| file.write(str_toolbar_js) }
 
-    #source.js
+    #Source.js
     @work.template_file = "#{@TPL_PATH}/source.js.mustache"
     str_source_js = @work.render
     File.open("#{@JSRC_PATH}/Source.js", 'w') { |file| file.write(str_source_js) }
 
-    #page.js
+    #pages
     @work.sheets.each do |name, sheet|
       sheet.template_file = "#{@TPL_PATH}/page.js.mustache"
       str_page_js = sheet.render
