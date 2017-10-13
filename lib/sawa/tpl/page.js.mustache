@@ -6,7 +6,7 @@ class {{page_name}} extends Component {
     const column = [
       {{# rows_model}}
         {{^jsonignore}}
-          {"title":"{{title}}", "name":"{{name}}", "type":"{{type_js}}", "ref":"{{join_column}}"}, 
+          {"title":"{{title}}", "name":"{{name}}", "type":"{{type_js}}", "ref":"{{join_column}}", "null":{{nullable}}, "unique":{{unique}} ,"key": {{is_searchkey}} }, 
         {{/jsonignore}}
       {{/ rows_model}}
     ]
@@ -17,7 +17,6 @@ class {{page_name}} extends Component {
         name="{{resource_path}}" 
         table_name="{{table_name}}" 
         column={column}
-        onError={this.props.onError}
       />
     );
   }
