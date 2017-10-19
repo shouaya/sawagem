@@ -31,7 +31,7 @@ class Toolbar extends Component {
 		{{# sheet_arr}}
 			<Menu.Item style={ {display: admin ? 'block' : 'none'} } name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleItemClick} >{{model_title}}</Menu.Item>
 		{{/ sheet_arr}}
-		<CustomMenu activeItem={activeItem} onClick={this.handleItemClick} />
+		<CustomMenu activeItem={activeItem} onClick={this.handleItemClick} user={this.props.user} />
 		<Menu.Menu position='right'>
 		    <Menu.Item as={Link} to='/logout'> 
 		      <Button primary >Sign out</Button>
