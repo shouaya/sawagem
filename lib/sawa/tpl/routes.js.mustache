@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import {{page_name}} from './pages/{{page_name}}'
 {{/ sheet_arr}}
 import CustomRoute from './components/CustomRoute'
-import {Switch,Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 class Routes extends Component {
 	render() {
 		return (
-			<Switch>
+			<div>
 				{{# sheet_arr}}
 				<Route path='/{{resource_path}}' component={ {{page_name}} } />
 				{{/ sheet_arr}}
 				<CustomRoute user={this.props.user} setUser={this.props.setUser}/>
-			</Switch>
+			</div>
 		)
 	}
 }

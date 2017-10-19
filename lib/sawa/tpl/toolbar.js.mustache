@@ -13,7 +13,18 @@ class Toolbar extends Component {
   
   render() {
 	  const { activeItem } = this.state
-	  if(this.props.user === undefined || this.props.user === null) return null
+	  if(this.props.user === undefined || this.props.user === null){
+	      return (<Menu inverted pointing secondary>
+	              <Menu.Menu position='right'>
+	                <Menu.Item as={Link} to='/login'> 
+	                  <Button primary >Sign In</Button>
+	                </Menu.Item>
+	                <Menu.Item as={Link} to='/regist'> 
+                      <Button primary >Sign Up</Button>
+                    </Menu.Item>
+	            </Menu.Menu>
+	          </Menu>)
+	  }
 	  const admin = this.props.user.role === "ADMIN"
 	  return(
 	  <Menu inverted pointing secondary>
