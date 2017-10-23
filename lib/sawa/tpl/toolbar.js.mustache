@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import CustomMenu from './components/CustomMenu';
 import { Link } from 'react-router-dom'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu, Button, Dropdown } from 'semantic-ui-react'
 
 class Toolbar extends Component {
 
   constructor (props) {
 	super(props)
 	this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-	this.state = {activeItem: ""}
+	this.handleMastMenuClick = (e, { name }) => this.setState({ activeItem: name,　activeTitle : e.target.text })
+	this.state = {activeItem: "", activeTitle: "テーブル管理"}
   }
   
   render() {
-	  const { activeItem } = this.state
+	  const { activeItem, activeTitle } = this.state
 	  if(this.props.user === undefined || this.props.user === null){
 	      return (<Menu inverted pointing secondary>
 	              <Menu.Menu position='right'>
@@ -28,10 +29,14 @@ class Toolbar extends Component {
 	  const admin = this.props.user.role === "ADMIN"
 	  return(
 	  <Menu inverted pointing secondary>
+	    <CustomMenu activeItem={activeItem} onClick={this.handleItemClick} user={this.props.user} />
+	    <Dropdown item text={activeTitle} >
+          <Dropdown.Menu>
 		{{# sheet_arr}}
-			<Menu.Item style={ {display: admin ? 'block' : 'none'} } name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleItemClick} >{{model_title}}</Menu.Item>
+		    <Menu.Item style={ {display: admin ? 'block' : 'none'} } name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleMastMenuClick} >{{model_title}}</Menu.Item>
 		{{/ sheet_arr}}
-		<CustomMenu activeItem={activeItem} onClick={this.handleItemClick} user={this.props.user} />
+		  </Dropdown.Menu>
+        </Dropdown>
 		<Menu.Menu position='right'>
 		    <Menu.Item as={Link} to='/logout'> 
 		      <Button primary >Sign out</Button>
