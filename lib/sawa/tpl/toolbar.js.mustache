@@ -30,10 +30,10 @@ class Toolbar extends Component {
 	  return(
 	  <Menu inverted pointing secondary>
 	    <CustomMenu activeItem={activeItem} onClick={this.handleItemClick} user={this.props.user} />
-	    <Dropdown item text={activeTitle} >
+	    <Dropdown item text={activeTitle} style={ {display: admin ? 'block' : 'none'} } >
           <Dropdown.Menu>
 		{{# sheet_arr}}
-		    <Menu.Item style={ {display: admin ? 'block' : 'none'} } name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleMastMenuClick} >{{model_title}}</Menu.Item>
+		    <Menu.Item name='{{resource_path}}' active={activeItem === '{{resource_path}}'} as={Link} to='/{{resource_path}}' onClick={this.handleMastMenuClick} >{{model_title}}</Menu.Item>
 		{{/ sheet_arr}}
 		  </Dropdown.Menu>
         </Dropdown>
