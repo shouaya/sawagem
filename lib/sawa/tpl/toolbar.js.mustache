@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GuestMenu from './components/GuestMenu';
 import CustomMenu from './components/CustomMenu';
 import { Link } from 'react-router-dom'
-import { Menu, Button, Dropdown } from 'semantic-ui-react'
+import { Menu, Dropdown } from 'semantic-ui-react'
 
 class Toolbar extends Component {
 
@@ -19,13 +19,9 @@ class Toolbar extends Component {
 	      return (<Menu inverted pointing secondary>
 	              <GuestMenu activeItem={activeItem} onClick={this.handleItemClick}/>
 	              <Menu.Menu position='right'>
-	                <Menu.Item as={Link} to='/login'> 
-	                  <Button primary >Sign In</Button>
-	                </Menu.Item>
-	                <Menu.Item as={Link} to='/regist'> 
-                      <Button primary >Sign Up</Button>
-                    </Menu.Item>
-	            </Menu.Menu>
+	                <Menu.Item as={Link} to='/login'>ログイン</Menu.Item>
+	                <Menu.Item as={Link} to='/regist'>サインアップ</Menu.Item>
+	              </Menu.Menu>
 	          </Menu>)
 	  }
 	  const admin = this.props.user.role === "ADMIN"
@@ -41,9 +37,7 @@ class Toolbar extends Component {
 		  </Dropdown.Menu>
         </Dropdown>
 		<Menu.Menu position='right'>
-		    <Menu.Item as={Link} to='/logout'> 
-		      <Button primary >Sign out</Button>
-		    </Menu.Item>
+		    <Menu.Item as={Link} to='/logout'> ログアウト </Menu.Item>
 		</Menu.Menu>
 	  </Menu>
 	 )
